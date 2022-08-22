@@ -40,36 +40,43 @@ class Home extends ConsumerWidget {
         data: (data) {
           return data == null
               ? const Text('shit')
-              : ListView.builder(
-                  itemCount: data != null ? data.length : 0,
-                  itemBuilder: (BuildContext context, int index) {
-                    return ListTile(
-                        trailing: Column(
-                          children: [
-                            Text(
-                              data![index].id,
-                              style: const TextStyle(
-                                  color: Colors.green, fontSize: 15),
-                            ),
-                            Text(
-                              data[index].username,
-                              style: const TextStyle(
-                                  color: Colors.green, fontSize: 15),
-                            ),
-                            Text(
-                              data[index].email,
-                              style: const TextStyle(
-                                  color: Colors.green, fontSize: 15),
-                            ),
-                            Text(
-                              data[index].website,
-                              style: const TextStyle(
-                                  color: Colors.green, fontSize: 15),
-                            ),
-                          ],
-                        ),
-                        title: Text("List item $index"));
-                  },
+              : SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: data.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return ListTile(
+                              trailing: Column(
+                                children: [
+                                  // Text(
+                                  //   data![index].id,
+                                  //   style: const TextStyle(
+                                  //       color: Colors.green, fontSize: 15),
+                                  // ),
+                                  Text(
+                                    data[index].username,
+                                    style: const TextStyle(
+                                        color: Colors.green, fontSize: 15),
+                                  ),
+                                  Text(
+                                    data[index].email,
+                                    style: const TextStyle(
+                                        color: Colors.green, fontSize: 15),
+                                  ),
+                                  // Text(
+                                  //   data[index].website,
+                                  //   style: const TextStyle(
+                                  //       color: Colors.green, fontSize: 15),
+                                  // ),
+                                ],
+                              ),
+                              title: Text("List item $index"));
+                        },
+                      ),
+                    ],
+                  ),
                 );
         },
         error: (err, s) => Text(err.toString()),
